@@ -87,6 +87,14 @@
        
     ])->middleware('role:super');
 
+
+// for department
+
+Route::resource('department','DepartmentController');    
+
+
+
+
 // New Routes for show students in admin area ------------------------//
 
     Route::get('/students',[ 

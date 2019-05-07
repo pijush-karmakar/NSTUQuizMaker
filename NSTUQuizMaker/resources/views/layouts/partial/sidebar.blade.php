@@ -17,7 +17,7 @@
                     @admin('super')
 
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Role
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-id-badge"></i><span>Role
                                     </span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('admin.roles') }}">Role List</a></li>
@@ -28,7 +28,7 @@
                             
 
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Admin
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i><span>Admin
                                     </span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('admin.show') }}">All Admin</a></li>
@@ -37,11 +37,20 @@
                             </li>
 
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Faculty
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-receipt"></i><span>Faculty
                                     </span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ route('faculty.index') }}">All Faculty</a></li>
                                     <li><a href="{{ route('faculty.create') }}">ADD Faculty</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-receipt"></i><span>Department
+                                    </span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('department.index') }}">All Dept</a></li>
+                                    <li><a href="{{ route('department.create') }}">ADD Dept</a></li>
                                 </ul>
                             </li>
 
@@ -52,7 +61,7 @@
         @admin('dept_admin')
 
                         <li>
-                            <a href="{{ route('student.index') }}" aria-expanded="true"><i class="ti-dashboard"></i><span>Students</span></a>
+                            <a href="{{ route('student.index') }}" aria-expanded="true"><i class="ti-user"></i><span>Students</span></a>
                         </li>
 
         @endadmin
