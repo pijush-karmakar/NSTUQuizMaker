@@ -15,7 +15,7 @@ class CreateBatchesTable extends Migration
     {
         Schema::create('batches', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('degree_id')->unsigned();
+            $table->bigInteger('degree_id')->unsigned();
             $table->string('session');
             $table->string('session_start');
             $table->string('batch_name');

@@ -13,11 +13,12 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
+        // Schema::enableForeignKeyConstraints();
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('phone');
-            $table->integer('department_id')->unsigned();
+            $table->bigInteger('department_id')->unsigned();
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('active')->default(0);
