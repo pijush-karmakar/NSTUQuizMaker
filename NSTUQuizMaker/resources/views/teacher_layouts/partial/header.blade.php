@@ -29,8 +29,7 @@
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
 
-                            
-                                <li><a href="{{ route('admin.home') }}">Home</a></li>
+                                <li><a href="{{ route('teacher.dashboard') }}">Home</a></li>
                                 <li><span>Dashboard</span></li>
                                 
                             </ul>
@@ -39,50 +38,25 @@
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
                             <img class="avatar user-thumb" src="{{ asset('assets/images/author/avatar.png') }}" alt="avatar">
-
-                            
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth('admin')->user()->name }} <i class="fa fa-angle-down"></i></h4>
                             
                             
-                            {{-- For students only  --}}
+                            {{-- For teachers only  --}}
                             
-                            {{-- <h4 class="user-name dropdown-toggle" data-toggle="dropdown"> {{ Auth::guard('student')->user()->name }}<i class="fa fa-angle-down"></i></h4> --}}
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown"> {{ Auth::guard('teacher')->user()->name }}<i class="fa fa-angle-down"></i></h4>
                         
 
                             <div class="dropdown-menu">
 
-                                @admin('super')
-                                    <a class="dropdown-item" href="{{ route('admin.show') }}">{{ ucfirst(config('multiauth.prefix')) }}</a>
-                                    <a class="dropdown-item" href="{{ route('admin.roles') }}">Roles</a>
-                                @endadmin
-
                                 
-
-                                
-
-                                 <a class="dropdown-item" href="{{ route('admin.password.change') }}">Change Password</a>
-                                <a class="dropdown-item" href="/admin/logout" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                
-
-                               {{--  <a class="dropdown-item" href="{{ route('student.logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('teacher.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                 </a>
-                                <form id="logout-form" action="{{ route('student.logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('teacher.logout') }}" method="POST" style="display: none;">
                                     @csrf
-                                </form> --}}
-
-
+                                </form>
                                 
                             </div>
-
-
 
 
                         </div>

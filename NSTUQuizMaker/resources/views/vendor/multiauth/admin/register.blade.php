@@ -48,6 +48,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-form-label">Select Department</label>
+                        <select class="form-control" name="department_id">
+                             
+                          @foreach($departments as $department)
+                             <option value="{{ $department->id }}">{{ $department->name }}</option>
+                          @endforeach
+                            
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                             <label for="role_id" class="col-form-label">Assign Role</label>
 
                                 <select name="role_id[]" id="role_id" class="form-control {{ $errors->has('role_id') ? ' is-invalid' : '' }}" multiple>

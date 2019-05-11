@@ -59,10 +59,30 @@
         {{-- Dept Admin Accesse Menu  --}}
         
         @admin('dept_admin')
-
+                       
                         <li>
                             <a href="{{ route('student.index') }}" aria-expanded="true"><i class="ti-user"></i><span>Students</span></a>
                         </li>
+
+                        <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-receipt"></i><span>Degree
+                                    </span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('degree.index') }}">All Degree</a></li>
+                                    <li><a href="{{ route('degree.create') }}">Add Degree</a></li>
+                                </ul>
+                        </li>
+
+                        <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-receipt"></i><span>Batch
+                                    </span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('batch.index') }}">All Batch</a></li>
+                                    <li><a href="{{ route('batch.create') }}">ADD batch</a></li>
+                                </ul>
+                            </li>
+
+                        
 
         @endadmin
 

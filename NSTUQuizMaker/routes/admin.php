@@ -30,6 +30,7 @@
 
     // Roles
     Route::get('/roles', 'RoleController@index')->name('admin.roles');
+
     Route::get('/role/create', 'RoleController@create')->name('admin.role.create');
     Route::post('/role/store', 'RoleController@store')->name('admin.role.store');
     Route::delete('/role/{role}', 'RoleController@destroy')->name('admin.role.delete');
@@ -42,7 +43,7 @@
 
 
 
-// New routes for Super Admin -------------------------//
+// ----------------- Added custom route (role for Super Admin) ----------------
 
 // for faculty
     Route::get('/faculties',[ 
@@ -87,15 +88,15 @@
        
     ])->middleware('role:super');
 
-
 // for department
-
-Route::resource('department','DepartmentController');    
-
+Route::resource('department','DepartmentController')->middleware('role:super');    
 
 
 
-// New Routes for show students in admin area ------------------------//
+
+// ----------------- (role for dept_admin) ------------------------
+
+// New Routes for students
 
     Route::get('/students',[ 
 
@@ -111,7 +112,15 @@ Route::resource('department','DepartmentController');
        
     ])->middleware('role:dept_admin');
 
-//
+
+
+// for degree 
+Route::resource('degree','DegreesController')->middleware('role:dept_admin'); 
+//for batch    
+Route::resource('batch','BatchController')->middleware('role:dept_admin');     
+
+
+ 
 
 
 
@@ -123,13 +132,6 @@ Route::resource('department','DepartmentController');
 
 
 
-
-
-
-
-    Route::get('faculty_admin',function(){
-       return 'faculty admin only';
-    })->middleware('role:faculty_admin');
 
 // For blade file -----------------------
 

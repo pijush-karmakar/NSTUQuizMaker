@@ -11,7 +11,7 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }} {{ ucfirst(config('multiauth.prefix')) }}</title> --}}
 
-    <title>@yield('title') - {{ config('app.name', 'NSTUQuizMaker') }}</title>
+    <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -32,17 +32,42 @@
 
     @stack('css')
 
-
 </head>
 
 <body>
 
 
-    <!-- login area start -->
-    <div class="login-area login-bg">
-         @yield('content')
-    </div>
 
+    <!-- page container area start -->
+    <div class="page-container">
+
+        <!-- sidebar menu area start -->
+          @include('teacher_layouts.partial.sidebar')
+        <!-- sidebar menu area end -->
+
+        <!-- main content area start -->
+        <div class="main-content">
+
+
+        <!-- header area start -->
+            @include('teacher_layouts.partial.header')
+        <!-- header area start -->
+
+
+            <div class="main-content-inner">
+                
+                @yield('content')
+                
+            </div>
+
+
+        </div>
+        <!-- main content area end -->
+
+
+        <!-- footer area start-->
+            @include('teacher_layouts.partial.footer')
+        <!-- footer area end-->
 
 
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
@@ -75,8 +100,6 @@
 
 
     @stack('js')
-
-
 
 </body>
 

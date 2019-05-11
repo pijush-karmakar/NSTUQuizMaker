@@ -22,7 +22,8 @@ return [
  */
     'admin' => [
         'validations' => [
-            'phone' => 'required|min:11'
+            'phone' => 'required|min:11',
+            'department_id' => 'required',
         ],
     ],
 

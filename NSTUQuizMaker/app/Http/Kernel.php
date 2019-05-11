@@ -51,6 +51,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'teacher.auth' => \App\Http\Middleware\RedirectIfNotTeacher::class,
+        'teacher.guest' => \App\Http\Middleware\RedirectIfTeacher::class,
         'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
         'student.guest' => \App\Http\Middleware\RedirectIfStudent::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

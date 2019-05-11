@@ -1,5 +1,5 @@
-@extends('student.layouts.app') 
-@section('title','Student Login')
+@extends('teacher.layouts.app') 
+@section('title','Teacher Login')
 
 
 
@@ -9,7 +9,7 @@
 .nav-pills .nav-link{
     border-radius:0;
     line-height: 30px;
-     padding: 1rem 2.74rem;
+
 }
 li.nav-item{
     width: 33.33%;
@@ -18,11 +18,11 @@ li.nav-item{
     background-color: #8655fc;
     font-size: 17px;
     font-weight: bold;
+    
 }
 .nav-pills li a{
    font-size: 17px;
    font-weight: bold;
-   display: inline-block;
 }
 
     
@@ -36,20 +36,19 @@ li.nav-item{
 
 <div class="container">
             <div class="login-box ptb--100">
-                <form method="POST" action="{{ route('student.login') }}">
+                <form method="POST" action="{{ route('teacher.login') }}">
                      @csrf
 
                      <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link " href="{{ route('admin.login') }}">Admin</a>
                                     </li>
-
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('teacher.login') }}" >Teacher</a>
+                                        <a class="nav-link active" href="{{ route('teacher.login') }}" >Teacher</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="{{ route('student.login') }}" >Student</a>
+                                        <a class="nav-link " href="{{ route('student.login') }}" >Student</a>
                                     </li>
                                     
                     </ul>
@@ -111,14 +110,14 @@ li.nav-item{
                                 </div>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="{{ route('student.password.request') }}">Forgot Password?</a>
+                                <a href="{{ route('teacher.password.request') }}">Forgot Password?</a>
                             </div>
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
                         </div>
                         <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="{{ route('student.register') }}">Sign up</a></p>
+                            <p class="text-muted">Don't have an account? <a href="{{ route('teacher.register') }}">Sign up</a></p>
                         </div>
                     </div>
                 </form>
