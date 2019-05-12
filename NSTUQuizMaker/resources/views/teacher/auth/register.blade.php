@@ -23,6 +23,14 @@
                              </div> 
                         @endif
 
+                         @if ($errors->has('designation'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert"> {{ $errors->first('designation') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                     <span class="fa fa-times"></span>
+                                </button>
+                             </div> 
+                        @endif
+
                         @if ($errors->has('email'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert"> {{ $errors->first('email') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -48,6 +56,34 @@
                                 <span class="input-group-text" id="basic-addon2"><i class="ti-user"></i></span>
                              </div>
                         </div>
+
+                        <label for="exampleInputEmail1">Designation</label>
+                        <div class="input-group mb-3">
+                            
+                            <input type="text" id="exampleInputEmail1" class="form-control{{ $errors->has('designation') ? ' is-invalid' : '' }}" name="designation" value="{{ old('designation') }}"  required autofocus >
+                             
+                             <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2"><i class="ti-user"></i></span>
+                             </div>
+                        </div>
+
+                    <label for="exampleInputEmail1">Select Department</label>
+                    <div class="input-group mb-3">
+                            
+                        <select class="form-control" name="department_id">
+                             
+                          @foreach($departments as $department)
+                             <option value="{{ $department->id }}">{{ $department->short_name }}</option>
+                          @endforeach
+                            
+                        </select>
+                             
+                             <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2"><i class="ti-user"></i></span>
+                             </div>
+                    </div>
+
+                    
 
                         <label for="exampleInputEmail1">E-Mail Address</label>
                         <div class="input-group mb-3">

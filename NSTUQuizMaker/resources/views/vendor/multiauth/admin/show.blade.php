@@ -53,7 +53,7 @@
                                 <td>{{ $admin->name }}</td>
 
 
-                          <td><select class="form-control" name="department_id">
+                          {{-- <td><select class="form-control" name="department_id">
                              
                           @foreach($departments as $department)
                           <option {{ $department->id == $admin->department_id ? 'selected' : '' }} disabled
@@ -61,7 +61,16 @@
                           </option>
                           @endforeach
                             
-                        </select></td>
+                        </select></td> --}}
+
+
+                                <td>
+                                     @foreach($departments as $department)
+                                    @if($department->id == $admin->department_id)
+                                        {{ $department->short_name }}
+                                    @endif @endforeach
+                                </td>
+                            
                                 
 
                          @foreach ($admin->roles as $role) 

@@ -112,14 +112,30 @@ Route::resource('department','DepartmentController')->middleware('role:super');
        
     ])->middleware('role:dept_admin');
 
+// New Routes for Teacher
+
+    Route::get('/teachers',[ 
+
+        'uses' => 'TeacherController@index',
+        'as'   => 'teacher.index'
+       
+    ])->middleware('role:dept_admin');
+
+    Route::delete('/teachers/{id}',[ 
+
+        'uses' => 'TeacherController@destroy',
+        'as'   => 'teacher.delete'
+       
+    ])->middleware('role:dept_admin');
+
 
 
 // for degree 
 Route::resource('degree','DegreesController')->middleware('role:dept_admin'); 
 //for batch    
 Route::resource('batch','BatchController')->middleware('role:dept_admin');     
-
-
+//for course    
+Route::resource('course','CourseController')->middleware('role:dept_admin');  
  
 
 

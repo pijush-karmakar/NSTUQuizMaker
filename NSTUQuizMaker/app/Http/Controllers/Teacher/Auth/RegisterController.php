@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Teacher\Auth;
 
 use App\Teacher;
+use App\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,8 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:teachers',
             'password' => 'required|min:6|confirmed',
+            'designation' => 'required',
+            'department_id' => 'required',
         ]);
     }
 
@@ -66,6 +69,8 @@ class RegisterController extends Controller
         return Teacher::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'designation' => $data['designation'],
+            'department_id' => $data['department_id'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -77,7 +82,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('teacher.auth.register');
+        $departments = Department::all();
+        return view('teacher.auth.register',compact('departments'));
     }
 
     /**

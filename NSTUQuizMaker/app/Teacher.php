@@ -17,7 +17,7 @@ class Teacher extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','department_id','designation', 'email', 'password',
     ];
 
     /**
@@ -58,5 +58,12 @@ class Teacher extends Authenticatable
     {
         $this->notify(new TeacherVerifyEmail);
     }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
+    }
+
+
 
 }

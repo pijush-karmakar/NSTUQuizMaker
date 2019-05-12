@@ -74,12 +74,15 @@
 
                         @endforeach 
 
-                        @if($batches->count()==0)
-                        <tr><td><p>No batch is available or created Yet...</p></td></tr>
-                        @endif   
-                                                
+                        <tr>
+                            @if($batches->count()==0)
+                           <td>No batch is available or created Yet...</td>
+                            @endif
+                        </tr>                                    
 
                     </tbody>
+
+                    
                                         </table>
                                     </div>
                                 </div>

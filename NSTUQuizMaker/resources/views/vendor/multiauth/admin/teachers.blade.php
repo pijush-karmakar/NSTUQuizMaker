@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','All Students')
+@section('title','All Teachers')
 
 @push('css')
  
@@ -14,16 +14,17 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <h4 class="header-title">Student List</h4>
+                                <h4 class="header-title">Teacher List</h4>
                                 @include('multiauth::message')
                                 <div class="data-tables">
                                     {{-- <div class="table-responsive"> --}}
                                         <table id="dataTable" class="text-center">
                                             <thead class="bg-light text-capitalize">
                                                 <tr>
-                                                    <th>Student Name</th>
+                                                    <th>Teacher Name</th>
+                                                    <th>Designation</th>
+                                                    <th>Dept.</th>
                                                     <th>Email</th>
-                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -32,24 +33,32 @@
 
                     <tbody>
                         
-                         @foreach ($students as $key=>$student)
+                         @foreach ($teachers as $key=>$teacher)
                             
                             <tr>
-                                <td>{{ $student->name }}</td>
+                                <td>{{ $teacher->name }}</td>
+                                <td>{{ $teacher->designation }}</td>
 
-                                <td>{{ $student->email }}</td>
-
+                            
                                 <td>
-                                    Active
-
+                                    @foreach($departments as $department)
+                                    @if($department->id == $teacher->department_id)
+                                        {{ $department->short_name }}
+                                    @endif
+                                    @endforeach
                                 </td>
+                            
+
+                                <td>{{ $teacher->email }}</td>
+
+                                
 
                                 <td>
                                     <ul class="d-flex justify-content-center">
 
-                                        <li><a href="#" class="text-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $student->id }}').submit();"><i class="ti-trash"></i></a></li>
+                                        <li><a href="#" class="text-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $teacher->id }}').submit();"><i class="ti-trash"></i></a></li>
 
-                            <form id="delete-form-{{ $student->id }}" action="{{ route('student.delete',[$student->id]) }}" method="POST" style="display: none;">
+                            <form id="delete-form-{{ $teacher->id }}" action="{{ route('teacher.delete',[$teacher->id]) }}" method="POST" style="display: none;">
                                 @csrf @method('delete')
                             </form>
 
@@ -61,9 +70,9 @@
                         @endforeach 
 
                            
-                        @if($students->count()==0)
-                        <tr><td><p>No students is available or created Yet...</p></td></tr>
-                        @endif                     
+                        @if($teachers->count()==0)
+                        <tr><td><p>No teachers is available or created Yet...</p></td></tr>
+                        @endif                      
 
                     </tbody>
                                         </table>

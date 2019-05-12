@@ -12,7 +12,7 @@
                                 <a href="{{ route('admin.home') }}" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
                             </li>
 
-{{-- Super Admin Accesse Menu  --}}
+{{-- Super Admin Access Menu  --}}
 
                     @admin('super')
 
@@ -56,12 +56,16 @@
 
                         @endadmin
 
-        {{-- Dept Admin Accesse Menu  --}}
+        {{-- Dept Admin Access Menu  --}}
         
         @admin('dept_admin')
                        
                         <li>
                             <a href="{{ route('student.index') }}" aria-expanded="true"><i class="ti-user"></i><span>Students</span></a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('teacher.index') }}" aria-expanded="true"><i class="ti-user"></i><span>Teachers</span></a>
                         </li>
 
                         <li>
@@ -80,7 +84,18 @@
                                     <li><a href="{{ route('batch.index') }}">All Batch</a></li>
                                     <li><a href="{{ route('batch.create') }}">ADD batch</a></li>
                                 </ul>
-                            </li>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-receipt"></i><span>Course
+                                </span></a>
+                            <ul class="collapse">
+                                <li><a href="{{ route('course.index') }}">All Course</a></li>
+                                <li><a href="{{ route('course.create') }}">ADD Course</a></li>
+                            </ul>
+                        </li>
+
+
 
                         
 
