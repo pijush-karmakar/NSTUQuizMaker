@@ -14,14 +14,23 @@
 
                             
 
-                            {{-- <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Faculty
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Test Topic
                                     </span></a>
                                 <ul class="collapse">
-                                    <li><a href="index.html">All Faculty</a></li>
-                                    <li><a href="index3-horizontalmenu.html">ADD Faculty</a></li>
+                                    <li><a href="{{ route('topic.index') }}">All Topic</a></li>
+                                    <li><a href="{{ route('topic.create') }}">ADD Topic</a></li>
                                 </ul>
-                            </li> --}}
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Question Type
+                                    </span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('type.index') }}">All Type</a></li>
+                                    <li><a href="{{ route('type.create') }}">ADD Type</a></li>
+                                </ul>
+                            </li>
 
                             
 

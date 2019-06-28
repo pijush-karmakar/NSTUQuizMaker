@@ -105,6 +105,16 @@ Route::resource('department','DepartmentController')->middleware('role:super');
        
     ])->middleware('role:dept_admin');
 
+
+    Route::post('/students/show',[ 
+
+        'uses' => 'StudentController@show',
+        'as'   => 'student.show'
+       
+    ])->middleware('role:dept_admin');
+
+
+
     Route::delete('/students/{id}',[ 
 
         'uses' => 'StudentController@destroy',
@@ -149,8 +159,3 @@ Route::resource('course','CourseController')->middleware('role:dept_admin');
 
 
 
-// For blade file -----------------------
-
-    Route::get('posts',function(){
-       return view('posts');
-    });

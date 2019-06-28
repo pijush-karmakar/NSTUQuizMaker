@@ -14,8 +14,11 @@ Route::group(['namespace' => 'Teacher'], function() {
 
     // Passwords
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('teacher.password.email');
+
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('teacher.password.request');
+    
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('teacher.password.reset');
 
     // Must verify email
@@ -23,4 +26,20 @@ Route::group(['namespace' => 'Teacher'], function() {
     Route::get('email/verify','Auth\VerificationController@show')->name('teacher.verification.notice');
     Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('teacher.verification.verify');
 
+
+
+// for topic
+Route::resource('topic','TopicsController'); 
+// for question type
+Route::resource('type','Question_typeController');
+// for question type
+Route::resource('question','QuestionsController');
+
+
+
+
 });
+
+
+
+ 
