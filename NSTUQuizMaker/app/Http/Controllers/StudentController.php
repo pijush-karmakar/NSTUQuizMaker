@@ -21,13 +21,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        // $students = Student::all();
-       //  $degrees = Degree::all();
-       //  $batches = Batch::all();
-
-       // return view('vendor.multiauth.admin.students',compact('degrees','batches'));
-
-    // abort_unless(\Gate::allows('student_index'), 401);
+       
     $degrees = Degree::all()->pluck('short_title', 'id')
     ->prepend('-- Select --', '');
 
@@ -77,14 +71,14 @@ public function show(Request $request)
     }
 
     public function codeall(Request $request){
-       $student = new Student();
-       // $student->registration_code = $request->registration_code;
-       $current_timestamp = Carbon::now()->timestamp; // 
-       $base62 = Math::to_base($current_timestamp, 62);
-       // $student->registration_code = date("y").substr(number_format(time() * mt_rand(),0,'',''),0,6);
-       $student->registration_code = $base62;
-       $student->save(); 
-         return redirect(route('student.index'))->with('message', 'Registration code created successfully for All');
+       // $student = new Student();
+       // // $student->registration_code = $request->registration_code;
+       // $current_timestamp = Carbon::now()->timestamp; // 
+       // $base62 = Math::to_base($current_timestamp, 62);
+       // // $student->registration_code = date("y").substr(number_format(time() * mt_rand(),0,'',''),0,6);
+       // $student->registration_code = $base62;
+       // $student->save(); 
+       //   return redirect(route('student.index'))->with('message', 'Registration code created successfully for All');
     }
 
 

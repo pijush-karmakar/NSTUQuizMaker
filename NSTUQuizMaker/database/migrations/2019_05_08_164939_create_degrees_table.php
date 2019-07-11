@@ -15,9 +15,15 @@ class CreateDegreesTable extends Migration
     {
         Schema::create('degrees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('department_id')->unsigned();
             $table->string('short_title');
             $table->string('full_title');
             $table->timestamps();
+
+            $table->foreign('department_id')
+                ->references('id')->on('departments')
+                ->onDelete('cascade');
+
         });
     }
 

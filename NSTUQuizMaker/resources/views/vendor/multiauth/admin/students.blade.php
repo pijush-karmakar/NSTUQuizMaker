@@ -14,9 +14,9 @@
           <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <p class="">Select Degreee and Session to view students</p>
+                        <p class="">Select Degree and Session to view students</p>
                         
-                        <form method="POST" action="{{ route('student.show') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('student.show') }}">
                           @csrf
                             <div class="form-row align-items-center">
                                   
@@ -38,7 +38,7 @@
                         <select class="form-control" name="session" id="select_session">
                             
                           {{-- @foreach($batches as $batch) --}}
-                             <option  value="">-- select --</option>
+                             <option  value=""> -- Select -- </option>
                           {{-- @endforeach --}}
                          
                             
@@ -49,7 +49,7 @@
                                 <div class="form-group col-sm-3 my-1">
                                   <label></label>
                                 <div class="col-auto my-1">
-                                    <button type="submit" class="btn btn-primary">Show student List</button>
+                                    <button type="submit" class="btn btn-primary">Show Student List</button>
                                 </div></div>
 
                             </div>

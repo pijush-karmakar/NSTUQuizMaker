@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+Use App\Department;
 use App\Degree;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class DegreesController extends Controller
     public function index()
     {
          $degrees = Degree::oldest()->get();
-        return view('vendor.multiauth.degree.index',compact('degrees'));
+         $departments = Department::all();
+        return view('vendor.multiauth.degree.index',compact('degrees','departments'));
     }
 
     /**
@@ -26,7 +28,8 @@ class DegreesController extends Controller
      */
     public function create()
     {
-        return view('vendor.multiauth.degree.create');
+        $departments = Department::all();
+        return view('vendor.multiauth.degree.create',compact('departments'));
     }
 
     /**
@@ -40,6 +43,7 @@ class DegreesController extends Controller
         $this->validate($request,[
             'short_title' => 'required',
             'full_title' => 'required',
+            'department_id' => 'required',
         ]);
 
        $degree = new degree();
@@ -47,6 +51,7 @@ class DegreesController extends Controller
        
        $degree->short_title = $request->short_title;
        $degree->full_title = $request->full_title;
+       $degree->department_id = $request->department_id;
 
        $degree->save();
        
@@ -73,7 +78,8 @@ class DegreesController extends Controller
     public function edit($id)
     {
          $degree = Degree::find($id);
-        return view('vendor.multiauth.degree.edit',compact('degree'));
+         $departments = Department::all();
+        return view('vendor.multiauth.degree.edit',compact('degree','departments'));
     }
 
     /**
@@ -88,12 +94,14 @@ class DegreesController extends Controller
         $this->validate($request,[
             'short_title' => 'required',
             'full_title' => 'required',
+            'department_id' => 'required',
         ]);
 
        $degree = Degree::find($id);   
        
        $degree->short_title = $request->short_title;
        $degree->full_title = $request->full_title;
+       $degree->department_id = $request->department_id;
 
        $degree->save();
        

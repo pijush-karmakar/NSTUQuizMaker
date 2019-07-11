@@ -120,7 +120,8 @@ Route::resource('department','DepartmentController')->middleware('role:super');
        
     ])->middleware('role:dept_admin');
 
-        Route::post('/students',[ 
+
+    Route::post('/students',[ 
 
         'uses' => 'StudentController@codeall',
         'as'   => 'student.codeall'

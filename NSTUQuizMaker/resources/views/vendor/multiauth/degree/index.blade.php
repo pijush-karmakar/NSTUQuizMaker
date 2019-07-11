@@ -36,6 +36,7 @@
                                             <thead class="text-uppercase">
                                                 <tr>
                                                     <th scope="col">Degree Name</th>
+                                                    <th scope="col">Dept</th>
                                                     <th scope="col">Degree full title</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
@@ -48,6 +49,13 @@
                             
                             <tr>
                                 <td>{{ $degree->short_title }}</td>
+                                <td>
+                                    @foreach($departments as $department)
+                                    @if($department->id == $degree->department_id)
+                                        {{ $department->short_name }}
+                                    @endif
+                                    @endforeach
+                                </td>
                                 <td>{{ $degree->full_title }}</td>
 
                                 <td>

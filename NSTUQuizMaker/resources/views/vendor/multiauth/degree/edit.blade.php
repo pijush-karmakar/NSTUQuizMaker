@@ -22,6 +22,17 @@
                     </div>
 
                     <div class="form-group">
+                        <select class="form-control" name="department_id">
+                             
+                          @foreach($departments as $department)
+                             <option {{ $department->id == $degree->department_id ? 'selected' : '' }} value="{{ $department->id }}">{{ $department->short_name }}</option>
+                          @endforeach
+                            
+                        </select>
+                     
+                    </div>
+
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Degree Full Title</label>
                         <input type="text" name="full_title" value="{{ $degree->full_title }}" class="form-control" id="exampleInputEmail1" required>
                      
