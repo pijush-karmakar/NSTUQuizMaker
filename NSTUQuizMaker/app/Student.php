@@ -59,4 +59,8 @@ class Student extends Authenticatable
         $this->notify(new StudentVerifyEmail);
     }
 
+   
+
+
+
 }

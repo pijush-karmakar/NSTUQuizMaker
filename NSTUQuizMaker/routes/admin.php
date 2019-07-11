@@ -113,6 +113,26 @@ Route::resource('department','DepartmentController')->middleware('role:super');
        
     ])->middleware('role:dept_admin');
 
+    Route::post('/students/create_regcode',[ 
+
+        'uses' => 'StudentController@createCode',
+        'as'   => 'student.create_regcode'
+       
+    ])->middleware('role:dept_admin');
+
+        Route::post('/students',[ 
+
+        'uses' => 'StudentController@codeall',
+        'as'   => 'student.codeall'
+       
+    ])->middleware('role:dept_admin');
+
+    Route::post('/students/edit/{id}',[ 
+
+        'uses' => 'StudentController@edit',
+        'as'   => 'student.edit'
+       
+    ])->middleware('role:dept_admin');
 
 
     Route::delete('/students/{id}',[ 

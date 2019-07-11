@@ -132,4 +132,11 @@ class BatchController extends Controller
          $batch->delete();
          return redirect(route('batch.index'))->with('message', ' Batch deleted successfully');
     }
+
+
+
+
+
+
+
 }
