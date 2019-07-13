@@ -81,6 +81,7 @@
 
 
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- bootstrap 4 js -->
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

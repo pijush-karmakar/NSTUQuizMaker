@@ -113,18 +113,22 @@ Route::resource('department','DepartmentController')->middleware('role:super');
        
     ])->middleware('role:dept_admin');
 
-    Route::post('/students/create_regcode',[ 
+    Route::get('/students/create_regcode', [ 
 
         'uses' => 'StudentController@createCode',
-        'as'   => 'student.create_regcode'
-       
+        'as'   => 'student.create_regcode'       
     ])->middleware('role:dept_admin');
 
-        Route::post('/students',[ 
+    Route::get('/students/mail_regcode', [ 
 
-        'uses' => 'StudentController@codeall',
-        'as'   => 'student.codeall'
-       
+        'uses' => 'StudentController@mailCode',
+        'as'   => 'student.mail_regcode'       
+    ])->middleware('role:dept_admin');
+
+    Route::post('/students/create_regcodes', [ 
+
+        'uses' => 'StudentController@createMultipleCodes',
+        'as'   => 'student.create_regcodes'       
     ])->middleware('role:dept_admin');
 
     Route::post('/students/edit/{id}',[ 

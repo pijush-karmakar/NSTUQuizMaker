@@ -23,158 +23,133 @@ padding-left: 20px
 <div class="col-12 mt-5">
   <div class="card">
     <div class="card-body">
-      <h2 class="header-title float-left">Student List : </h2>
-      @if(count($students) > 0 )
-      <span class="deg_bat">
-        Degree :
-        {{-- @if(count($students) > 0 ) --}}
-        @foreach ($students as $student)
-        @foreach($degrees as $degree)
-        @if($degree->id == $student->degree_id)
-        {{ $degree->short_title }}
+      <div style="height: 50px;">
+        <h4 class="float-left">Student list of {{$degree->short_title}} {{$batch->session}} session</h4>
+        @if(count($students) > 0 )     
+          <ul>            
+            <li class="float-right "><a href="#" id="btn-send-mail-to-selected" class="btn btn-info btn-xs">Send mail to selected</a></li> 
+            <li class="float-right space"><a href="#" id="btn-create-regcode-for-selected" class="btn btn-info btn-xs">Create code for selected</a></li>       
+          </ul>
         @endif
-        @endforeach
-        @break($loop->first)
-        @endforeach
-        {{-- @endif --}}
-      </span>
-      <span class="deg_bat">Sesssion :
-        {{-- @if(count($students) > 0) --}}
-        @foreach ($students as $student)
-        @foreach($batches as $batch)
-        @if($batch->id == $student->batch_id)
-        {{ $batch->session }}
-        @endif
-        @endforeach
-        @break($loop->first)
-        @endforeach
-        {{-- @endif --}}
-      </span>
-      @else
-      <span class="deg_bat">Student's not available</span>
-      @endif
-      
-      <ul class="float-right space">
-        <li><a href="#" class="btn btn-info btn-xs" onclick="event.preventDefault(); document.getElementById('codeall').submit();">Create Code For All</a></li>
-        <form id="codeall" action="{{ route('student.codeall') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
-      </ul>
-      
-      <ul class="float-right space">
-        <li><a href="#" class="btn btn-info btn-xs" onclick="event.preventDefault(); document.getElementById('mail').submit();">Send Mail to All</a></li>
-        <form id="mail" action="" method="POST" style="display: none;">
-          @csrf
-        </form>
-      </ul>
-      
-      <div class="data-tables table-responsive text-nowrap">
-        {{-- <div class="table-responsive"> --}}
-          <table id="example" class="text-center">
-            <thead class="bg-light text-capitalize">
-              <tr>
-                <th></th>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Roll</th>
-                <th>Session</th>
-                <th>Degree</th>
-                <th>Email</th>
-                <th>Registered</th>
-                <th>Status</th>
-                <th>Code</th>
-                <th>Create Code</th>
-                <th>Send Mail</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              @foreach ($students as $student)
-              
-              <tr>
-                <td></td>
-                <td>{{ $student->student_id }}</td>
-                <td>{{ $student->name }}</td>
-                <td>{{ $student->roll }}</td>
-                <td>
-                  @foreach($batches as $batch)
-                  @if($batch->id == $student->batch_id)
-                  {{ $batch->session }}
-                  @endif
-                  @endforeach
-                </td>
-                <td>
-                  @foreach($degrees as $degree)
-                  @if($degree->id == $student->degree_id)
-                  {{ $degree->short_title }}
-                  @endif
-                  @endforeach
-                </td>
-                
-                <td>{{ $student->email }}</td>
-                <td>
-                  @if($student->is_registered== true)
-                  <span class="status-p bg-success">registered
-                  </span>
-                  @else
-                  <span class="status-p bg-warning">pending
-                  </span>
-                  @endif
-                </td>
-                <td>
-                  @if($student->is_active== true)
-                  <span class="status-p bg-success">Active
-                  </span>
-                  @else
-                  <span class="status-p bg-warning">Disable
-                  </span>
-                  @endif
-                </td>
-                <td>{{  $student->registration_code }}</td>
-                <td>
-                  <ul class="d-flex justify-content-center">
-                    {{-- {{  Form::open(array('action' => array('StudentController@code', $student->id), 'id'=>'ajax')) }}
-                    @csrf
-                    <input type="submit" value="Create"> --}}
-                    {{--  <form  id="ajax" auction="{{ $student->id }}"  action="{{ route('student.code') }}" method="POST">
-                      @csrf
-                      <input type="submit" name="ajax" value="Create">
-                    </form> --}}
-                    {{-- {{  Form::close() }} --}}
-                    
-                    <li><a href="#" class="btn btn-create-regcode btn-info btn-xs" data-id="{{$student->id}}">Create</a>
-                    </li>                    
-                  </ul>
-                </td>
-                <td>
-                  <ul class="d-flex justify-content-center">
-                    <li><a href="#" class="btn btn-mail_regcode btn-info btn-xs">Mail</a>
-                    </li>                 
-                  </ul>
-                </td>
-                
-                <td>
-                  <ul class="d-flex justify-content-center">
-                    <li class="mr-3"><a href="{{route('student.edit',[$student->id])}}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-                    <li><a href="#" class="text-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $student->id }}').submit();"><i class="ti-trash"></i></a></li>
-                    <form id="delete-form-{{ $student->id }}" action="{{ route('student.delete',[$student->id]) }}" method="POST" style="display: none;">
-                      @csrf @method('delete')
-                    </form>
-                  </ul>
-                </td>
-              </tr>
-              @endforeach
-              
-              @if($students->count()==0)
-              <tr><td><p>No students is available or created yet...</p></td></tr>
-              @endif
-            </tbody>
-          </table>
-        {{-- </div> --}}
       </div>
+
+      @if(count($students) > 0 )
+        <div class="data-tables table-responsive text-nowrap">
+          {{-- <div class="table-responsive"> --}}
+            <table id="student-list" class="text-center">
+              <thead class="bg-light text-capitalize">
+                <tr>
+                  <th></th>
+                  <th>Student ID</th>
+                  <th>Name</th>
+                  <th>Roll</th>
+                  <th>Session</th>
+                  <th>Degree</th>
+                  <th>Email</th>
+                  <th>Registered</th>
+                  <th>Status</th>
+                  <th>Code</th>
+                  <th>Create Code</th>
+                  <th>Send Mail</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                @foreach ($students as $student)
+                
+                <tr>
+                  <td></td>
+                  <td class="td-std-id">{{ $student->student_id }}</td>
+                  <td class="td-std-name">{{ $student->name }}</td>
+                  <td class="td-std-roll">{{ $student->roll }}</td>
+                  <td class="td-std_session">                  
+                    {{ $batch->session }}
+                  </td>
+                  <td class="td-std-degree">               
+                    {{ $degree->short_title }}
+                  </td>
+                  
+                  <td class="td-std-email">{{ $student->email }}</td>
+                  <td class="td-std-reg-status">
+                    @if($student->is_registered== true)
+                    <span class="status-p bg-success">registered
+                    </span>
+                    @else
+                    <span class="status-p bg-warning">pending
+                    </span>
+                    @endif
+                  </td>
+                  <td class="td-std-status">
+                    @if($student->is_active== true)
+                    <span class="status-p bg-success">Active
+                    </span>
+                    @else
+                    <span class="status-p bg-warning">Disabled
+                    </span>
+                    @endif
+                  </td>
+                  <td class="td-std-regcode">
+                    <span class="std-regcode" style="font-family:monospace">{{  $student->registration_code }}</span>
+                  </td>
+                  <td class="td-btn-regcode">
+                    <a href="#" class="btn btn-create-regcode btn-info btn-xs" data-std-id="{{$student->id}}" data-std-name="{{$student->name}}" data-std-email="{{$student->email}}">Create</a>                    
+                  </td>
+                  <td class="td-btn-mail-regcode">
+                    <a href="#" class="btn btn-mail-regcode btn-info btn-xs" data-std-id="{{$student->id}}">Mail</a>
+                  </td>                  
+                  <td>
+                    <ul class="d-flex justify-content-center">
+                      <li class="mr-3"><a href="{{route('student.edit',[$student->id])}}" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                      <li><a href="#" class="text-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $student->id }}').submit();"><i class="ti-trash"></i></a></li>
+                      <form id="delete-form-{{ $student->id }}" action="{{ route('student.delete',[$student->id]) }}" method="POST" style="display: none;">
+                        @csrf @method('delete')
+                      </form>
+                    </ul>
+                  </td>
+                </tr>
+                @endforeach
+                
+                @if($students->count()==0)
+                <tr><td><p>No student record found.</p></td></tr>
+                @endif
+              </tbody>
+            </table>
+          {{-- </div> --}}
+        </div>
+      @else
+      <span class="deg_bat">No student records found.</span>
+      @endif
     </div>
   </div>
+
+  <div class="modal fade" id="notify-regcode" role="dialog">
+    <div class="modal-dialog">  
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title" style="text-align: center; margin:auto;">Registration code</h4>
+        </div>
+        <div class="modal-body">          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="notify-mail-sent" role="dialog">
+    <div class="modal-dialog">          
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title" style="text-align: center; margin:auto;">Mail registration code</h4>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>      
+    </div>
+  </div>
+
 </div>
 <!-- Admin Table end -->
 
@@ -186,7 +161,7 @@ padding-left: 20px
 
 <script type="text/javascript">
 $(document).ready(function (){
-  var table = $('#example').DataTable({
+  var table = $('#student-list').DataTable({
     'columnDefs': [
       {
         'orderable': false,
@@ -202,26 +177,88 @@ $(document).ready(function (){
       'selector': 'td:first-child'
     },
     'order': [[1, 'asc']]
+  });  
+
+  function sendMail(std_id){
+    $("#notify-regcode").modal('hide');
+
+    $.ajax({
+      url: "{{ route('student.mail_regcode') }}?std_id=" + std_id,
+      method: 'GET',
+      success: function(response) {                  
+        if(response.success)
+        {
+          //alert("Mail sent");
+          $('#notify-mail-sent .modal-dialog .modal-body').html(
+            '<div style="text-align: center;"><p>Registration mail sent.</p></div>'
+          );
+        }
+        else
+        {
+          $('#notify-mail-sent .modal-dialog .modal-body').html(
+            '<div style="text-align: center;"><p>Registration mail send failed.</p></div>'
+          );
+        }
+
+        $("#notify-mail-sent").modal({backdrop: "static"});
+      }
+    });
+  }
+
+  $('.btn-create-regcode').click(function (e){   
+    var std_id = $(this).data('std-id');
+    var std_name = $(this).data('std-name');
+    var std_email = $(this).data('std-email');
+
+    var $reg_code_span = $(this).closest('tr').find('.std-regcode');    
+
+    var modal_body = $("#notify-regcode .modal-dialog .modal-body");
+    modal_body.html(
+      '<div style="text-align: center;">' +
+      '<p style="text-align: center;">Generating registration code for </p>' +
+      '<h5>' + std_name + '.</h5>' +
+      '<p>Please wait...</p>' +
+      '</div>');
+    
+    $("#notify-regcode").modal({backdrop: "static"});
+    $.ajax({
+      url: "{{ route('student.create_regcode') }}?std_id=" + std_id,
+      method: 'GET',
+      success: function(response) {                  
+        if(response.success)
+        {
+          var reg_code = response.reg_code;
+          modal_body.html(
+          '<div style="text-align: center;">' +
+          '<p>Registration code generated for <strong>' + std_name + '</strong></p>' +
+          '<h2 style="color:#2070A0; font-family:monospace; line-height:2">' + reg_code + '</h2><br>' +          
+          '<p>Email registration code to <strong>' + std_email + '</strong>?</p><br>' + 
+          '<a href="#" class="btn btn-mail-regcode btn-info btn-xs" data-std-id = "' + std_id + '">Mail now</a>' +
+          '<a style="margin-left:10px;" class="btn btn-default btn-xs" data-dismiss="modal">Close</a>' +
+          '</div>' 
+          );
+
+          $reg_code_span.html(reg_code);
+        }
+        else
+        {
+          modal_body.html('<p style="text-align: center;">Failed to generate registration code for <br><h5>' + std_name + '.</h5><br> Please try again...</p>');
+          $("#notify-regcode .modal-dialog .modal-footer").removeClass('d-none');
+        }
+      }
+    });
   });
 
-  $('.btn-create-regcode').click(function (e){
-  var std_id =$(this).attr('data-id');
-  
-    $.ajax({
-        url: "{{ route('student.create_regcode') }}?std_id=" + std_id,
-        method: 'POST',
-        success: function(response) {                  
-          if(response.success)
-          {
-            alert(response.reg_code);
-          }
-          else
-          {
-            //Show error
-          }
-        }
-    });
-});
+  $('.btn-mail-regcode').on('click', function (e){   
+    var std_id = $(this).data('std-id');
+    sendMail(std_id);
+  });
+
+  $('#notify-regcode').on('click', '.btn-mail-regcode', function(e){
+    var std_id = $(this).data('std-id');
+    sendMail(std_id);
+  });
+
 });
 </script>
 
