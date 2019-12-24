@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.hostinger.co.uk'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'pijushkarmakar45@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'pijushkarmakar45'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply.nstuquiz@tlabsinc.com'),
+        'name' => env('MAIL_FROM_NAME', 'NSTU Quiz Maker'),
     ],
 
     /*
