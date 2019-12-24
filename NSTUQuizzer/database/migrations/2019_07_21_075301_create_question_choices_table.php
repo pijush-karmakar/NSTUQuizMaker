@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDegreesTable extends Migration
+class CreateQuestionChoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateDegreesTable extends Migration
      */
     public function up()
     {
-        Schema::create('degrees', function (Blueprint $table) {
+        Schema::create('question_choices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('department_id')->unsigned();
-            $table->string('short_title');
-            $table->string('full_title');
+            $table->bigInteger('question_id')->unsigned();
+            $table->text('choice_description');
+            $table->boolean('is_correct')->default(0);
             $table->timestamps();
 
-            $table->foreign('department_id')
-                ->references('id')->on('departments')
+            $table->foreign('question_id')
+                ->references('id')->on('questions')
                 ->onDelete('cascade');
-<<<<<<< HEAD
-
-=======
->>>>>>> aa6c686ac854e2f9aaf89a0fdfcd300ac47df5a5
         });
     }
 
@@ -37,6 +33,6 @@ class CreateDegreesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('degrees');
+        Schema::dropIfExists('question_choices');
     }
 }

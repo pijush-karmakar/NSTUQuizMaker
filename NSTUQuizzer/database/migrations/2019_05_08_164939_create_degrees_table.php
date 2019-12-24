@@ -23,10 +23,6 @@ class CreateDegreesTable extends Migration
             $table->foreign('department_id')
                 ->references('id')->on('departments')
                 ->onDelete('cascade');
-<<<<<<< HEAD
-
-=======
->>>>>>> aa6c686ac854e2f9aaf89a0fdfcd300ac47df5a5
         });
     }
 
